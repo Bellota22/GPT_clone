@@ -1,0 +1,10 @@
+fastapi==0.62.0
+uvicorn==0.12.3
+SQLAlchemy==2.0.17
+aiosqlite
+alembic
+python-jose[cryptography]
+passlib[bcrypt]
+multipart
+python-multipart
+lorem

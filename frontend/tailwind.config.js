@@ -5,7 +5,15 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'logo': "url('/public/vecteezy_chatgpt-logo-chat-gpt-icon-on-white-background_21059827.jpg')",
+      }
+      
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+
+  ],
 }

@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from '../Home'
-import Login from '../Login'
+import Auth from '../Auth'
+import PrivateRoute from '../../components/PrivateRoute'
+import SharedChat from '../SharedChat'
 
 function App() {
 
@@ -8,8 +10,12 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Auth />} />
+            <Route path="/chat/:chatId" element={<SharedChat />} />
+
+            <Route element={<PrivateRoute />}>
+              <Route path="/" element={<Home />} />
+            </Route>
         </Routes>
       </BrowserRouter>
       
