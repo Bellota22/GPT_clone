@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Chat from '../Home/Chat';
 import { useParams } from 'react-router-dom';
 import { getChat } from '../../api/chat';
+
 function SharedChat() {
     const { chatId } = useParams();
 
@@ -12,6 +13,7 @@ function SharedChat() {
       const responseParsed = JSON.parse(response.content);
       setChat(responseParsed);
     }
+
     useEffect( ()  => {
       getChatForShare()
      
@@ -29,7 +31,7 @@ function SharedChat() {
             <Chat chat={chat} />
           </div>
 
-          <div className='cursor-pointer text-white font-semibold' onClick={() => handleShare()} >
+          <div className='cursor-pointer text-white font-semibold'>
           </div>
 
         </div>

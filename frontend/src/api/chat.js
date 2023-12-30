@@ -1,7 +1,9 @@
 import {axi } from './authAxios';
+import { jwtDecode } from "jwt-decode";
 
 export const getChatLorem = async (message) => {
     const token = localStorage.getItem('access_token'); // Replace with the actual token   
+    console.log(jwtDecode(token))
     const data = { message };
     try {
         const response = await axi.post('/chat', data, {

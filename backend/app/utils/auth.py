@@ -1,12 +1,13 @@
-from fastapi.security import OAuth2PasswordBearer
-from passlib.context import CryptContext
-from app.utils.user_crud import get_user
-from sqlalchemy.orm import Session
-from fastapi import Depends, FastAPI, HTTPException, status
-from app.db.database import get_db
-from datetime import datetime, timedelta
 from jose import JWTError, jwt
-from app.schemas.user import User, Token, TokenData
+from sqlalchemy.orm import Session
+from datetime import datetime, timedelta
+from passlib.context import CryptContext
+from fastapi.security import OAuth2PasswordBearer
+from fastapi import Depends, HTTPException, status
+
+from app.db.database import get_db
+from app.utils.user_crud import get_user
+from app.schemas.user import User, TokenData
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
@@ -32,6 +33,11 @@ def authenticate_user(username: str, password: str, db: Session = Depends(get_db
         return False
     return user
 
+def authenticate_google_user(username: str, db: Session = Depends(get_db)):
+    user = get_user(db, username)
+    if not user:
+        return False
+    return user
 
 def create_access_token(data: dict, expires_delta: timedelta or None = None):
     to_encode = data.copy()
@@ -64,7 +70,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
 
 
 async def get_current_active_user(current_user: User = Depends(get_current_user)):
-    print(current_user)
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
 

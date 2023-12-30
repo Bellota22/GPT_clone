@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Text
-from sqlalchemy.orm import relationship
 from app.db.database import Base
+from sqlalchemy import Column, Integer, String, ForeignKey, Text
 
 class Chats(Base):
     __tablename__ = "chats"

@@ -8,3 +8,5 @@ passlib[bcrypt]
 multipart
 python-multipart
 lorem
+requests
+python-dotenv

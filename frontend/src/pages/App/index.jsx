@@ -1,8 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from '../Home'
 import Auth from '../Auth'
 import PrivateRoute from '../../components/PrivateRoute'
 import SharedChat from '../SharedChat'
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
@@ -18,6 +20,7 @@ function App() {
             </Route>
         </Routes>
       </BrowserRouter>
+        <Toaster />
       
     </>
   )

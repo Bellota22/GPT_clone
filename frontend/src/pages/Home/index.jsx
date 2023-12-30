@@ -2,36 +2,18 @@ import SideBar from '../../components/SideBar'
 import InputBar from './InputBar'
 import React from 'react'
 import './index.css'
-import { getChatLorem, saveChat } from '../../api/chat';
 import Chat from './Chat';
-
+import { useHome } from './Hooks';
 function Home() {
-  const [input, setInput] = React.useState('');
-  const [chat, setChat] = React.useState([]);
-
-
   
-  const handleSendMessage = async () => {
-    const response = await getChatLorem(input);
-    const newMessage = {
-      userMessage: input,
-      botResponse: response?.text,  // Use the 'text' field from the response
-    };
-    setChat(prev => [...prev, newMessage]);
-    setInput(''); // Limpia el input después de enviar el mensaje
+  const {
+    input,
+    chat,
+    setInput,
+    handleSendMessage,
+    handleShare
 
-
-
-  };
-
-  const handleShare = async () => {
-    const response = await saveChat(chat);    
-    const shareableLink = `${window.location.origin}/chat/${response.id}`;
-    navigator.clipboard.writeText(shareableLink);
-    alert("Link copied to clipboard");
-  }
-  
-
+  } = useHome()
 
   return (
     <>

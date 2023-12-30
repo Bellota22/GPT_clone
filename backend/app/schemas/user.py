@@ -58,3 +58,7 @@ class TokenData(BaseModel):
 class RegisterRequest(BaseModel):
     username: str
     password: str
+    
+    
+class LoginGoogleRequest(BaseModel):
+    token: str
